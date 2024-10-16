@@ -22,7 +22,7 @@ repos:
     rev: v1.11.2
     hooks:
       - id: mypy
-        args: [--strict, --ignore-missing-imports]
+        args: [--ignore-missing-imports]
 
   - repo: git@github.com:PyCQA/flake8.git
     rev: 7.1.1

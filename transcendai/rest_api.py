@@ -5,6 +5,8 @@ from typing import Dict
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+from transcendai.translation_logics import translate
+
 
 class TextPayload(BaseModel):
     """Pydentic payload received from user."""
@@ -23,6 +25,6 @@ async def summarize(payload: TextPayload) -> Dict[str, str]:
     # Dummy summarization logic
     if not text:
         raise HTTPException(status_code=400, detail="Text is required")
-    summary = text[:100] + "..." if len(text) > 100 else text
+    summary = translate(text)
 
     return {"summary": summary}

@@ -8,3 +8,9 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{"text": "This is a sample text that will be used to demonstrate the summarization feature of this FastAPI endpoint."}'
 ```
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/summarize' \
+  -H 'Content-Type: application/json' \
+  -d '{"text": "שלום מה קורה"}'
+```

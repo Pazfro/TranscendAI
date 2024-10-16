@@ -1,7 +1,8 @@
 """Main initializing the fast api."""
 
 import uvicorn
-from rest_api import app
+
+from transcendai.rest_api import app
 
 if __name__ == "__main__":
     """Starting the fast api."""

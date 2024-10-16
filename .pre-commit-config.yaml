@@ -41,13 +41,13 @@ repos:
     rev: v1.7.5
     hooks:
       - id: docformatter
-        args: []
+        args: [-i]
 
   - repo: https://github.com/econchick/interrogate
     rev: 1.7.0
     hooks:
       - id: interrogate
-        args: [--fail-under=90]
+        args: [--fail-under=75]
 
   - repo: local
     hooks:

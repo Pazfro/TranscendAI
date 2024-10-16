@@ -6,7 +6,9 @@ Thought process:
 phi3 installation:
 - docker pull ollama/ollama
 - docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-
+- docker exec -it ollama bash
+- ollama run llama3.2
 
 facebook/nllb installation:
-- pip install transformers torch
+- pip install transformers torch python-bidi(for rtl print)
+- Load the tokenizer and the model (basic_translation.py)

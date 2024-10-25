@@ -6,7 +6,7 @@ Thought process:
 - Understood i should use llama.cpp and started from scratch
 - Compiled llama.cpp on a docker
 - added the installation of the facebook nllb
-- and started writting the fast api server
+- and started writing the fast api server
 
 
 phi3 installation Local:

@@ -1,8 +1,8 @@
+import os
 import subprocess
 from abc import ABC, abstractmethod
 from typing import IO, Generator, List, Optional
 
-# import os
 from transcendai.logger_config import logger
 from transcendai.schemas import SummarizeRequest
 from transcendai.translation_logics import translate_to_hebrew
@@ -18,12 +18,11 @@ class LlamaHandlerBase(ABC):
 class LlamaHandler(LlamaHandlerBase):
     def __init__(self, model_path: str):
         """Initializing llama handler."""
-        # self.model_path = model_path TODO
-        self.model_path = "/home/lior/.cache/llama.cpp/Phi-3-mini-4k-instruct-q4.gguf"
-        # self.llama_cli_path = os.path.join('/root/.cache/llama.cpp', 'llama-cli') TODO
-        # self.llama_cli_path =
-        # os.path.join(os.path.dirname(__file__), "llama.cpp", "llama-cli")
-        self.llama_cli_path = "/home/lior/paz/llama.cpp/llama-cli"
+        self.model_path = model_path
+        self.llama_cli_path = os.getenv(
+            "LLAMA_CLI_PATH",
+            os.path.join(os.path.dirname(__file__), "llama.cpp", "llama-cli"),
+        )
 
     def build_command(self, request: SummarizeRequest) -> List[str]:
         """Building the full llama command ."""
@@ -84,6 +83,7 @@ class LlamaHandler(LlamaHandlerBase):
             try:
                 while True:
                     line = stdout.readline()
+                    logger.debug(f"This was read from llama:\n{line}")
                     if not line:
                         break
                     if translate:

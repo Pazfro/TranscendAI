@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-from bidi.algorithm import get_display
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
 from transcendai.logger_config import logger
@@ -54,9 +53,7 @@ class NLLBTranslationModel(TranslationModel):
         """
         try:
             output = self.translation_pipeline(text)
-            translated_text: str = get_display(
-                output[0]["translation_text"]
-            )  # Correct RTL display for Hebrew
+            translated_text: str = output[0]["translation_text"]
             logger.info("Translated text: %s", translated_text)
             return translated_text
         except Exception as e:

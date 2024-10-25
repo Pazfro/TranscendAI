@@ -34,7 +34,7 @@ async def summarize(request: SummarizeRequest) -> StreamingResponse:
             raise HTTPException(status_code=500, detail="Error during translation")
 
     request.text = input_request
-    logger.info(f"Processing request: text length {input_request} characters")
+    logger.info(f"Processing request: {input_request}")
 
     # Stream the response from LLaMA handler
     return StreamingResponse(

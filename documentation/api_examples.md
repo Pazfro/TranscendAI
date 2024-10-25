@@ -45,6 +45,7 @@ curl -X POST http://localhost:8000/summarize \
   -d '{"text": "How to make pizza?", "top_k": 5}'
 ```
 Expected Output: The output will be more deterministic and focused, as the model will only consider the top 5 most likely tokens at each step.
+
 7. Diverse Output with High top_k and Controlled Repetition:
 ```bash
 curl -X POST http://localhost:8000/summarize \

@@ -1,8 +1,12 @@
 Thought process:
+- After reading the microsoft article about phi3 modules they offered Ollama as a lightweight framework for running models on a local machine
 - Wasn't sure if i should use the docker image, python lib or compile it myself do I compiled the code and made my own docker image
 - My computer almost died. ended up saving cache through th compilation process and my computer was in front of the fan for the whole time
 - In the end i created my own docker :) but for the fast api im using the one created by ollama
 - Understood i should use llama.cpp and started from scratch
+- Compiled llama.cpp on a docker
+- added the installation of the facebook nllb
+- and started writting the fast api server
 
 
 phi3 installation Local:

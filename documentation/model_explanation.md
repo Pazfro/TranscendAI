@@ -9,5 +9,6 @@
 #### Chosen Deploy method
 ##### TGI for GPU or Ollma for CPU
 1. I want to run inference locally without the complexity of managing GPUs.
-2. Ollma is easy for local deployment.
+2. Llama is easy for local deployment.
 3. lower power consumption - CPU-based inference is often more power-efficient than GPUs.
+4. I also dont have a Gpu

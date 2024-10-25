@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 from bidi.algorithm import get_display
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
+from transcendai.logger_config import logger
+
 
 class TranslationModel(ABC):
     """Abstract base class for translation models."""
@@ -32,6 +34,7 @@ class NLLBTranslationModel(TranslationModel):
         self.model_name = model_name
         self.src_lang = src_lang
         self.tgt_lang = tgt_lang
+        logger.info("Loading model: %s", model_name)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.translation_pipeline = pipeline(
@@ -49,5 +52,13 @@ class NLLBTranslationModel(TranslationModel):
         :param text: The text to be translated.
         :return: The translated text in the target language.
         """
-        output = self.translation_pipeline(text)
-        return get_display(output[0]["translation_text"])
+        try:
+            output = self.translation_pipeline(text)
+            translated_text: str = get_display(
+                output[0]["translation_text"]
+            )  # Correct RTL display for Hebrew
+            logger.info("Translated text: %s", translated_text)
+            return translated_text
+        except Exception as e:
+            logger.error("Translation error: %s", str(e))
+            raise RuntimeError(f"Error translating: {e}")

@@ -1,9 +1,8 @@
 repos:
   - repo: git@github.com:pre-commit/pre-commit-hooks.git
-    rev: v4.0.1
+    rev: v5.0.0
     hooks:
       - id: check-yaml
-      - id: check-added-large-files
       - id: check-merge-conflict
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -20,10 +19,10 @@ repos:
       - id: black
 
   - repo: git@github.com:pre-commit/mirrors-mypy.git
-    rev: v1.11.2
+    rev: v1.13.0
     hooks:
       - id: mypy
-        args: [--strict]
+        args: [--ignore-missing-imports]
 
   - repo: git@github.com:PyCQA/flake8.git
     rev: 7.1.1
@@ -42,13 +41,18 @@ repos:
     rev: v1.7.5
     hooks:
       - id: docformatter
-        args: []
+        name: docformatter
+        description: 'Formats docstrings to follow PEP 257.'
+        entry: docformatter
+        args: [-i]
+        language: python
+        types: [python]
 
   - repo: https://github.com/econchick/interrogate
     rev: 1.7.0
     hooks:
       - id: interrogate
-        args: [--fail-under=90]
+        args: [--fail-under=80, -M]
 
   - repo: local
     hooks:

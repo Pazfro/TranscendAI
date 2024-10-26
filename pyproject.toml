@@ -1,12 +1,18 @@
 [tool.poetry]
 name = "transcendai"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["liortct <liortct@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+transformers = "^4.45.2"
+torch = "^2.4.1"
+python-bidi = "^0.6.3"
+fastapi = "^0.115.2"
+uvicorn = "^0.32.0"
+pydentic = "^0.0.1.dev3"
 
 
 [build-system]

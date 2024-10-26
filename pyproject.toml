@@ -13,6 +13,7 @@ python-bidi = "^0.6.3"
 fastapi = "^0.115.2"
 uvicorn = "^0.32.0"
 pydentic = "^0.0.1.dev3"
+nltk = "^3.9.1"
 
 
 [build-system]

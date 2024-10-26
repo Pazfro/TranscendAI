@@ -51,7 +51,11 @@ class LlamaHandler(LlamaHandlerBase):
             logger.info(f"Executing LLaMA command: {' '.join(command)}")
 
             process = subprocess.Popen(
-                command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1,
             )
             yield from self.stream_output(process, translate=request.translate)
         except FileNotFoundError as e:
@@ -83,9 +87,9 @@ class LlamaHandler(LlamaHandlerBase):
             try:
                 while True:
                     line = stdout.readline()
-                    logger.debug(f"This was read from llama:\n{line}")
                     if not line:
                         break
+                    logger.debug("Raw output from Llama: %s", line.strip())
                     if translate:
                         try:
                             line = translate_to_hebrew(line)

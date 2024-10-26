@@ -8,8 +8,7 @@ from transcendai.translation_logics import translate_from_hebrew
 
 app = FastAPI()
 llama_handler = LlamaHandler(
-    # model_path="/root/.cache/llama.cpp/Phi-3-mini-4k-instruct-q4.gguf"
-    model_path="/home/lior/.cache/llama.cpp/Phi-3-mini-4k-instruct-q4.gguf"
+    model_path="/root/.cache/llama.cpp/Phi-3-mini-4k-instruct-q4.gguf"
 )
 
 

@@ -30,7 +30,7 @@ async def summarize(request: SummarizeRequest) -> StreamingResponse:
             input_request = translate_from_hebrew(input_request)
             logger.info("Translated summarize request.")
         except Exception as e:
-            logger.error(f"Translation error: {e}")
+            logger.error(f"Error translating request to english: {e}")
             raise HTTPException(status_code=500, detail="Error during translation")
 
     request.text = input_request

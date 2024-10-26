@@ -91,7 +91,7 @@ class LlamaHandler(LlamaHandlerBase):
                             line = translate_to_hebrew(line)
                             logger.info("Translated text from Hebrew to English.")
                         except Exception as e:
-                            logger.error(f"Translation error: {e}")
+                            logger.error(f"Error translating response to hebrew: {e}")
                             yield f"Error: {str(e)}\n"
                     yield f"{line}\n"
             except Exception as e:

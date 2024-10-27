@@ -159,3 +159,4 @@ cython_debug/
 .pytest_cache/
 .mypy_cache/
 .idea/
+logs/

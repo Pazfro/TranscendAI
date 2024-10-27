@@ -48,6 +48,11 @@ RUN wget https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/resolve/ma
 
 WORKDIR /app
 
+# Pre install transformers and nllb model
+RUN python3 -m pip install --no-cache-dir torch transformers
+COPY ../transcendai/preload_model.py .
+RUN python3 preload_model.py
+
 # Copy the built wheel from the builder stage
 COPY --from=builder /app/dist/*.whl /app
 RUN python3 -m pip install --no-cache-dir /app/*.whl

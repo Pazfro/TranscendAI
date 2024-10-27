@@ -37,3 +37,16 @@ def test_high_temperature():
         },
     )
     assert response.status_code == 200
+
+    def test_invalid_temperature_parameter():
+        """Test invalid param."""
+        response = client.post(
+            "/summarize",
+            json={
+                "text": "Some text",
+                "translate": False,
+                "temperature": -1,
+                "max_length": 100,
+            },
+        )
+        assert response.status_code == 422

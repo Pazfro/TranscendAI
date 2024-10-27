@@ -40,3 +40,35 @@ def test_boundary_values():
     assert request.top_p == 0.0
     assert request.top_k == 1
     assert request.repetition_penalty == 1.0
+
+
+def test_invalid_temperature():
+    """Test invalid temperature."""
+    with pytest.raises(ValidationError):
+        SummarizeRequest(text="Invalid temperature", temperature=2.0, max_length=50)
+
+
+def test_invalid_top_p():
+    """Test invalid top p."""
+    with pytest.raises(ValidationError):
+        SummarizeRequest(text="Invalid top_p", top_p=1.1, max_length=100)
+
+
+def test_invalid_top_k():
+    """Test invalid top k."""
+    with pytest.raises(ValidationError):
+        SummarizeRequest(text="Invalid top_k", top_k=1001, max_length=100)
+
+
+def test_invalid_repeat_penalty():
+    """Test invalid repeat penalty."""
+    with pytest.raises(ValidationError):
+        SummarizeRequest(
+            text="Invalid repeat_penalty", repetition_penalty=2.5, max_length=100
+        )
+
+
+def test_large_max_length():
+    """Test large max length."""
+    with pytest.raises(ValidationError):
+        SummarizeRequest(text="Too large max_length", max_length=5000)
